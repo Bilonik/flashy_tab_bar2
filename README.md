@@ -3,6 +3,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Cuberto/flashy-tabbar-android/master/LICENSE)
 
 THIS IS A FORK OF flashy_tab_bar by leesnhyun
+
 One another nice animated tabbar (Inspired by Cuberto)
 
 ![Animation](https://raw.githubusercontent.com/leesnhyun/flashy_tab_bar/master/docs/animation.gif)
