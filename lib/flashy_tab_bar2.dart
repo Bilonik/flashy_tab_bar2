@@ -1,6 +1,9 @@
-library flashy_tab_bar2;
-import 'package:flutter/material.dart';
+library flashy_tab_bar2;import 'package:flutter/material.dart';
 
+/// A Widget that displays a Bottom Navgation Bar with smooth animation.
+/// It is a wrapper around [BottomNavigationBar]
+/// [FlashyTabBar] is a widget that displays a horizontal row of tabs, one tab at a time.
+/// The tabs are individually titled and, when tapped, switch to that tab.
 class FlashyTabBar extends StatelessWidget {
   FlashyTabBar({
     Key? key,
@@ -77,6 +80,7 @@ class FlashyTabBar extends StatelessWidget {
   }
 }
 
+/// A single tab in the [FlashyTabBar]. A tab has a title and an icon. The title is displayed when the item is not selected. The icon is displayed when the item is selected. Tabs are always used in conjunction with a [FlashyTabBar].
 class FlashyTabBarItem {
   FlashyTabBarItem({
     required this.icon,
@@ -113,11 +117,16 @@ class _FlashTabBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// The icon is displayed when the item is not selected.
+    /// The title is displayed when the item is selected.
+    /// The icon and title are animated together.
+    /// The icon and title are animated in opposite directions.
     return Container(
         color: backgroundColor,
         height: double.maxFinite,
         child: Stack(
-          clipBehavior: Clip.hardEdge, alignment: Alignment.center,
+          clipBehavior: Clip.hardEdge,
+          alignment: Alignment.center,
           children: <Widget>[
             AnimatedAlign(
               duration: animationDuration,
@@ -179,6 +188,8 @@ class _FlashTabBarItem extends StatelessWidget {
                   ),
                   painter: _CustomPath(backgroundColor),
                 )),
+
+            /// This is the selected item indicator
             Align(
               alignment: Alignment.bottomCenter,
               child: AnimatedOpacity(
@@ -200,6 +211,7 @@ class _FlashTabBarItem extends StatelessWidget {
   }
 }
 
+/// A [CustomPainter] that draws a [FlashyTabBar] background.
 class _CustomPath extends CustomPainter {
   _CustomPath(this.backgroundColor);
 
@@ -226,4 +238,3 @@ class _CustomPath extends CustomPainter {
     return oldDelegate != this;
   }
 }
-
