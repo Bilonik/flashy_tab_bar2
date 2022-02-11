@@ -1,22 +1,10 @@
-library flashy_tab_bar2;
+library flashy_tab_bar2;import 'package:flutter/material.dart';
 
-import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart';
-
+/// A Widget that displays a Bottom Navgation Bar with smooth animation.
+/// It is a wrapper around [BottomNavigationBar]
+/// [FlashyTabBar] is a widget that displays a horizontal row of tabs, one tab at a time.
+/// The tabs are individually titled and, when tapped, switch to that tab.
 class FlashyTabBar extends StatelessWidget {
-  final int selectedIndex;
-  final double height;
-
-  final double iconSize;
-  final Color? backgroundColor;
-  final bool showElevation;
-  final Duration animationDuration;
-  final Curve animationCurve;
-  final List<BoxShadow> shadows;
-
-  final List<FlashyTabBarItem> items;
-  final ValueChanged<int> onItemSelected;
-
   FlashyTabBar({
     Key? key,
     this.selectedIndex = 0,
@@ -27,19 +15,28 @@ class FlashyTabBar extends StatelessWidget {
     this.animationDuration = const Duration(milliseconds: 170),
     this.animationCurve = Curves.linear,
     this.shadows = const [
-      const BoxShadow(
+      BoxShadow(
         color: Colors.black12,
         blurRadius: 3,
       ),
     ],
     required this.items,
     required this.onItemSelected,
-  }) {
-    assert(items != null);
+  }) : super(key: key) {
     assert(height >= 55 && height <= 100);
     assert(items.length >= 2 && items.length <= 5);
-    assert(onItemSelected != null);
   }
+
+  final Curve animationCurve;
+  final Duration animationDuration;
+  final Color? backgroundColor;
+  final double height;
+  final double iconSize;
+  final List<FlashyTabBarItem> items;
+  final ValueChanged<int> onItemSelected;
+  final int selectedIndex;
+  final List<BoxShadow> shadows;
+  final bool showElevation;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +52,7 @@ class FlashyTabBar extends StatelessWidget {
       child: SafeArea(
         child: Container(
           width: double.infinity,
-          height: this.height,
+          height: height,
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,7 +63,7 @@ class FlashyTabBar extends StatelessWidget {
                   onTap: () => onItemSelected(index),
                   child: _FlashTabBarItem(
                     item: item,
-                    tabBarHeight: this.height,
+                    tabBarHeight: height,
                     iconSize: iconSize,
                     isSelected: index == selectedIndex,
                     backgroundColor: bg!,
@@ -83,35 +80,22 @@ class FlashyTabBar extends StatelessWidget {
   }
 }
 
+/// A single tab in the [FlashyTabBar]. A tab has a title and an icon. The title is displayed when the item is not selected. The icon is displayed when the item is selected. Tabs are always used in conjunction with a [FlashyTabBar].
 class FlashyTabBarItem {
-  final Icon icon;
-  final Text title;
-
-  Color activeColor;
-  Color inactiveColor;
-
   FlashyTabBarItem({
     required this.icon,
     required this.title,
     this.activeColor = const Color(0xff272e81),
     this.inactiveColor = const Color(0xff9496c1),
-  }) {
-    assert(icon != null);
-    assert(title != null);
-  }
+  });
+
+  Color activeColor;
+  final Icon icon;
+  Color inactiveColor;
+  final Text title;
 }
 
 class _FlashTabBarItem extends StatelessWidget {
-  final double tabBarHeight;
-  final double iconSize;
-
-  final FlashyTabBarItem item;
-
-  final bool isSelected;
-  final Color backgroundColor;
-  final Duration animationDuration;
-  final Curve animationCurve;
-
   const _FlashTabBarItem(
       {Key? key,
       required this.item,
@@ -121,21 +105,27 @@ class _FlashTabBarItem extends StatelessWidget {
       required this.animationDuration,
       required this.animationCurve,
       required this.iconSize})
-      : assert(isSelected != null),
-        assert(item != null),
-        assert(backgroundColor != null),
-        assert(animationDuration != null),
-        assert(animationCurve != null),
-        assert(iconSize != null),
-        super(key: key);
+      : super(key: key);
+
+  final Curve animationCurve;
+  final Duration animationDuration;
+  final Color backgroundColor;
+  final double iconSize;
+  final bool isSelected;
+  final FlashyTabBarItem item;
+  final double tabBarHeight;
 
   @override
   Widget build(BuildContext context) {
+    /// The icon is displayed when the item is not selected.
+    /// The title is displayed when the item is selected.
+    /// The icon and title are animated together.
+    /// The icon and title are animated in opposite directions.
     return Container(
         color: backgroundColor,
         height: double.maxFinite,
         child: Stack(
-          overflow: Overflow.clip,
+          clipBehavior: Clip.hardEdge,
           alignment: Alignment.center,
           children: <Widget>[
             AnimatedAlign(
@@ -148,9 +138,7 @@ class _FlashTabBarItem extends StatelessWidget {
                         size: iconSize,
                         color: isSelected
                             ? item.activeColor.withOpacity(1)
-                            : item.inactiveColor == null
-                                ? item.activeColor
-                                : item.inactiveColor),
+                            : item.inactiveColor),
                     child: item.icon,
                   )),
               alignment: isSelected ? Alignment.topCenter : Alignment.center,
@@ -167,7 +155,7 @@ class _FlashTabBarItem extends StatelessWidget {
                     height: iconSize,
                   ),
                   CustomPaint(
-                    child: Container(
+                    child: SizedBox(
                       width: 80,
                       height: iconSize,
                     ),
@@ -194,12 +182,14 @@ class _FlashTabBarItem extends StatelessWidget {
             Positioned(
                 bottom: 0,
                 child: CustomPaint(
-                  child: Container(
+                  child: SizedBox(
                     width: 80,
                     height: iconSize,
                   ),
                   painter: _CustomPath(backgroundColor),
                 )),
+
+            /// This is the selected item indicator
             Align(
               alignment: Alignment.bottomCenter,
               child: AnimatedOpacity(
@@ -209,7 +199,7 @@ class _FlashTabBarItem extends StatelessWidget {
                     width: 5,
                     height: 5,
                     alignment: Alignment.bottomCenter,
-                    margin: EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       color: item.activeColor,
                       borderRadius: BorderRadius.circular(2.5),
@@ -221,10 +211,11 @@ class _FlashTabBarItem extends StatelessWidget {
   }
 }
 
+/// A [CustomPainter] that draws a [FlashyTabBar] background.
 class _CustomPath extends CustomPainter {
-  final Color backgroundColor;
-
   _CustomPath(this.backgroundColor);
+
+  final Color backgroundColor;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -238,7 +229,7 @@ class _CustomPath extends CustomPainter {
     path.lineTo(0, 0);
     path.close();
 
-    paint.color = this.backgroundColor;
+    paint.color = backgroundColor;
     canvas.drawPath(path, paint);
   }
 
