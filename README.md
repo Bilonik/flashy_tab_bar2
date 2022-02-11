@@ -9,10 +9,10 @@ One another nice animated tabbar (Inspired by Cuberto)
 ![Animation](https://raw.githubusercontent.com/leesnhyun/flashy_tab_bar/master/docs/animation.gif)
 
 ## Preview
+
 | Android  | iOS  |
 | :------------------- | -------------------: |
 | <img src="https://raw.githubusercontent.com/leesnhyun/flashy_tab_bar/master/docs/emulator-android.gif" height="714">  | <img src="https://raw.githubusercontent.com/leesnhyun/flashy_tab_bar/master/docs/emulator-ios.gif" height="714"> |
-
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ Add the dependency at pubspec.yaml:
 ```yaml
 dependencies:
   ...
-  flashy_tab_bar2: ^0.0.3
+  flashy_tab_bar2: ^0.0.4
 ```
 
 ## Basic Usage
