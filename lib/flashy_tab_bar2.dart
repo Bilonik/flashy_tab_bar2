@@ -1,6 +1,8 @@
-library flashy_tab_bar2;import 'package:flutter/material.dart';
+library flashy_tab_bar2;
 
-/// A Widget that displays a Bottom Navgation Bar with smooth animation.
+import 'package:flutter/material.dart';
+
+/// A Widget that displays a Bottom Navigation Bar with smooth animation.
 /// It is a wrapper around [BottomNavigationBar]
 /// [FlashyTabBar] is a widget that displays a horizontal row of tabs, one tab at a time.
 /// The tabs are individually titled and, when tapped, switch to that tab.
