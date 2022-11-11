@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,6 +37,7 @@ class _MyAppState extends State<MyApp> {
         bottomNavigationBar: FlashyTabBar(
           animationCurve: Curves.linear,
           selectedIndex: _selectedIndex,
+          iconSize: 30,
           showElevation: false, // use this to remove appBar's elevation
           onItemSelected: (index) => setState(() {
             _selectedIndex = index;
