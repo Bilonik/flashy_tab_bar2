@@ -27,6 +27,7 @@ class FlashyTabBar extends StatelessWidget {
   }) : super(key: key) {
     assert(height >= 55 && height <= 100);
     assert(items.length >= 2 && items.length <= 5);
+    assert(iconSize >= 15 && iconSize <= 50);
   }
 
   final Curve animationCurve;
@@ -54,7 +55,7 @@ class FlashyTabBar extends StatelessWidget {
       child: SafeArea(
         child: Container(
           width: double.infinity,
-          height: height,
+          height: height + iconSizeEffectCalculator(iconSize),
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,6 +81,13 @@ class FlashyTabBar extends StatelessWidget {
       ),
     );
   }
+
+  /// A method that calculate the effect of [iconSize] on the [height] of the Bottom navigation bar
+  double iconSizeEffectCalculator(double size) => size > 30
+      ? size * 1.2
+      : size > 10
+          ? size * .6
+          : 0;
 }
 
 /// A single tab in the [FlashyTabBar]. A tab has a title and an icon. The title is displayed when the item is not selected. The icon is displayed when the item is selected. Tabs are always used in conjunction with a [FlashyTabBar].
@@ -161,7 +169,7 @@ class _FlashTabBarItem extends StatelessWidget {
                       width: 80,
                       height: iconSize,
                     ),
-                    painter: _CustomPath(backgroundColor),
+                    painter: _CustomPath(backgroundColor, iconSize),
                   )
                 ],
               ),
@@ -188,7 +196,7 @@ class _FlashTabBarItem extends StatelessWidget {
                     width: 80,
                     height: iconSize,
                   ),
-                  painter: _CustomPath(backgroundColor),
+                  painter: _CustomPath(backgroundColor, iconSize),
                 )),
 
             /// This is the selected item indicator
@@ -215,9 +223,10 @@ class _FlashTabBarItem extends StatelessWidget {
 
 /// A [CustomPainter] that draws a [FlashyTabBar] background.
 class _CustomPath extends CustomPainter {
-  _CustomPath(this.backgroundColor);
+  _CustomPath(this.backgroundColor, this.iconSize);
 
   final Color backgroundColor;
+  final double iconSize;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -225,8 +234,8 @@ class _CustomPath extends CustomPainter {
     Paint paint = Paint();
 
     path.lineTo(0, 0);
-    path.lineTo(0, 2.0 * size.height);
-    path.lineTo(1.0 * size.width, 2.0 * size.height);
+    path.lineTo(0, (iconSize * .2) * size.height);
+    path.lineTo(1.0 * size.width, (iconSize * .2) * size.height);
     path.lineTo(1.0 * size.width, 1.0 * size.height);
     path.lineTo(0, 0);
     path.close();
