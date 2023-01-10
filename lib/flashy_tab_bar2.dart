@@ -100,7 +100,7 @@ class FlashyTabBarItem {
   });
 
   Color activeColor;
-  final Icon icon;
+  final Widget icon;
   Color inactiveColor;
   final Text title;
 }

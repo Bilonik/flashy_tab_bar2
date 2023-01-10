@@ -1,3 +1,7 @@
+## 0.0.6
+
+* Change Icon to Widget. Fixes [#4](https://github.com/Bilonik/flashy_tab_bar2/issues/4)
+
 ## 0.0.5
 
 * Icon and title overlap fixed. Fixes [#2](https://github.com/Bilonik/flashy_tab_bar2/issues/2) thanks to @mahmoud-eslami

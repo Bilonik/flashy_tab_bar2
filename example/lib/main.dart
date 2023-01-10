@@ -48,16 +48,20 @@ class _MyAppState extends State<MyApp> {
               title: Text('Events'),
             ),
             FlashyTabBarItem(
+              icon: Image.asset(
+                "assets/homeIcon.png",
+                color: Color(0xff9496c1),
+                width: 30,
+              ),
+              title: Text('Home'),
+            ),
+            FlashyTabBarItem(
               icon: Icon(Icons.search),
               title: Text('Search'),
             ),
             FlashyTabBarItem(
               icon: Icon(Icons.highlight),
               title: Text('Highlights'),
-            ),
-            FlashyTabBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Settings'),
             ),
             FlashyTabBarItem(
               icon: Icon(Icons.settings),
