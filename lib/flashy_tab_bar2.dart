@@ -102,7 +102,7 @@ class FlashyTabBarItem {
   Color activeColor;
   final Widget icon;
   Color inactiveColor;
-  final Text title;
+  final Widget title;
 }
 
 class _FlashTabBarItem extends StatelessWidget {
