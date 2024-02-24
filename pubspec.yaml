@@ -1,6 +1,6 @@
 name: flashy_tab_bar2
 description: One another nice animated tab bar (Flutter Version) (inspired by https://github.com/Cuberto/flashy-tabbar)
-version: 0.0.8
+version: 0.0.9
 homepage: https://github.com/Bilonik/flashy_tab_bar2
 
 environment:
