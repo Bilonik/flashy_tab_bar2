@@ -1,4 +1,8 @@
-## 0.0.6
+* ## 0.0.7
+
+* Change Text to Widget to allow more types [#6](https://github.com/Bilonik/flashy_tab_bar2/pull/6) thanks to @baolhq
+
+* ## 0.0.6
 
 * Change Icon to Widget. Fixes [#4](https://github.com/Bilonik/flashy_tab_bar2/issues/4)
 
