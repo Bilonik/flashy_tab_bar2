@@ -21,7 +21,7 @@ Add the dependency at pubspec.yaml:
 ```yaml
 dependencies:
   ...
-  flashy_tab_bar2: ^0.0.9
+  flashy_tab_bar2: ^0.0.10
 ```
 
 ## Basic Usage

@@ -1,3 +1,7 @@
+## 0.0.10
+
+* Fix [#7](https://github.com/Bilonik/flashy_tab_bar2/issues/7).
+
 ## 0.0.9
 
 * Fix Readme.
